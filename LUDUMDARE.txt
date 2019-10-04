@@ -1,0 +1,11 @@
+TOPIC
+
+This was our second LudumDare. Again, it was fun for us and we will participate on the next LudumDare.
+
+EXPLANATION
+
+We used:
+Unity
+Visual Studio
+Photoshop
+Maschine 2 Essentials + Hardware (Maschine MIKRO MK3, KOMPLETE KONTROL M32)
