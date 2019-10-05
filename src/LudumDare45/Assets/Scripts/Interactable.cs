@@ -25,20 +25,38 @@ public class Interactable : MonoBehaviour
         if (!PlayerManager.Instance.checkEnergy(energyCost))
         {
             //TODO: Sound!!
+            //Update UI
+            setUIText();
             return;
         }
         Debug.Log("do interaction");
+        PlayerManager.Instance.reduceEnergy(energyCost);
         interactAction.doInteraction(energyCost);
+        //Update UI
+        setUIText();
     }
 
     public void playerFacingMe()
     {
         Debug.Log("FacingMe");
-        ui.setText(objName, (int) type);
+        setUIText();
+        ui.show();
     }
 
     public void playerLostInterest()
     {
         ui.hide();
+    }
+
+    public void setUIText()
+    {
+        if (PlayerManager.Instance.checkEnergy(energyCost))
+        {
+            ui.setText(objName, (int)type, energyCost);
+        }
+        else
+        {
+            ui.setText(objName, (int)type, energyCost, interactUI.COLOR_RED);
+        }
     }
 }
