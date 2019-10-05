@@ -34,7 +34,7 @@ public class interactUI : MonoBehaviour
 
     public void setText(string text, int mode, float energyCost, int color)
     {
-        if (energyCost < 0)
+        if (energyCost == 0)
         {
             txtMode.SetText(modes[mode] + "\n" + text);
         }

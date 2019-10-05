@@ -20,7 +20,7 @@ public class Trashcan : InteractAction
             
 
         //TODO: Loottable
-        GameObject ob = Instantiate(loot, transform);
+        GameObject ob = Instantiate(loot);
         Rigidbody2D rb = ob.GetComponent<Rigidbody2D>();
         countSpawned += 1;
         float posX = (50 + Random.Range(-10, 10)) * ((countSpawned % 2 == 0) ? -1 : 1);
