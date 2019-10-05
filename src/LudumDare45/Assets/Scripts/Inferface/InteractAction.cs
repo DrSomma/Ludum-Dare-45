@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class InteractAction : MonoBehaviour
 {
-    public abstract void doInteraction(float energy);
+    public abstract bool doInteraction(float energy);
 }

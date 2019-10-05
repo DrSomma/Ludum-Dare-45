@@ -10,12 +10,12 @@ public class Trashcan : InteractAction
  
     private int countSpawned = 0;
 
-    public override void doInteraction(float energy)
+    public override bool doInteraction(float energy)
     {
         if (canSpawn())
         {
             //TODO: Animation / Sound
-            return;
+            return false;
         }
             
 
@@ -25,6 +25,8 @@ public class Trashcan : InteractAction
         countSpawned += 1;
         float posX = (50 + Random.Range(-10, 10)) * ((countSpawned % 2 == 0) ? -1 : 1);
         rb.AddForce(new Vector2(posX, 400));
+
+        return true;
     }
 
     public bool canSpawn()

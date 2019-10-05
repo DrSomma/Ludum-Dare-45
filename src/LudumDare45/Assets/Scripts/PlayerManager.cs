@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public float hpReduceRate = 1f;
     public float loopTime = 4f;
     public PlayerUpgrades upgrades;
+    public PlayerMovment movment;
 
     [Header("current stats")]
     public float hp = 100;
@@ -145,5 +146,10 @@ public class PlayerManager : MonoBehaviour
         energySlider.value = energy / upgrades.maxEnergy;
 
         InvokeRepeating("decreaseStats", loopTime, loopTime);  //1s delay, repeat every 1s
+    }
+
+    public bool facingRight()
+    {
+        return movment.lookRight;
     }
 }

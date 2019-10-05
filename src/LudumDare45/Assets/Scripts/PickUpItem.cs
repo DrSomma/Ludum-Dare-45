@@ -4,42 +4,45 @@ using UnityEngine;
 
 public class PickUpItem : InteractAction
 {
+    public InventoryItem item;
+
     private bool inFly = true;
     private Rigidbody2D rb;
+
+    private Vector2 throwVector = new Vector2(0,70);
 
     public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public override void doInteraction(float energy)
+    public override bool doInteraction(float energy)
     {
-        //PlayerManager.Instance.addToInv();
-        Debug.Log("Add to INV");
-        Destroy(this.gameObject);
+
+        if (Inventory.Instance.addToInv(item))
+        {
+            Debug.Log("Pickup Item: " + item.displayName);
+            Destroy(this.gameObject);
+            return true;
+        }
+        else
+        {
+            //TODO: Error Sound
+            if (inFly)
+                return false;
+            inFly = true;
+            rb.AddForce(throwVector); 
+        }
+        return false;
     }
 
-    public void FixedUpdate()
+    void Update()
     {
-        if (!inFly)
-            return;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
-        Debug.DrawRay(transform.position, Vector2.down * 0.5f, Color.green);
-        if (hit.collider != null)
+        if (inFly)
         {
-            Debug.Log("huhu");
-            if (hit.collider.gameObject.tag == "border")
+            if(Vector3.Distance(Vector3.zero, rb.velocity) < 0.2f)
             {
-                rb.bodyType = RigidbodyType2D.Static;
-                Collider2D[] coll = new Collider2D[2];
-                int i = rb.GetAttachedColliders(coll);
-                Debug.Log(i);
-                foreach(var item in coll)
-                {
-                    item.enabled = false;
-                }
-                
+                inFly = false;
             }
         }
     }

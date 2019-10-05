@@ -30,9 +30,10 @@ public class Interactable : MonoBehaviour
             return;
         }
         Debug.Log("do interaction");
-        PlayerManager.Instance.reduceEnergy(energyCost);
-        interactAction.doInteraction(energyCost);
-        //Update UI
+        if (interactAction.doInteraction(energyCost))
+        {
+            PlayerManager.Instance.reduceEnergy(energyCost);
+        }
         setUIText();
     }
 
