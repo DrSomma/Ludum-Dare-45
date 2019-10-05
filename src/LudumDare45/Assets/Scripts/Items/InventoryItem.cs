@@ -9,7 +9,7 @@ public class InventoryItem : ScriptableObject
     public string displayName = "ObjectName";
     public string description = "404 description";
 
-    public virtual void Use()
+    public virtual void Use(int invIndex)
     {
         Debug.Log("Use Item: " + displayName);
     }

@@ -73,7 +73,7 @@ public class InventoryUI : MonoBehaviour
         {
             if(i < inventory.getSize())
             {
-                slots[i].addItem(inventory.invItems[i]);
+                slots[i].addItem(inventory.invItems[i],i);
             }
             else
             {

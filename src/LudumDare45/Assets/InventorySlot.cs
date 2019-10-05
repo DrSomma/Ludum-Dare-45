@@ -5,15 +5,17 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button btnElemnt;
+    public int index;
 
     InventoryItem item;
 
-    public void addItem(InventoryItem newItem)
+    public void addItem(InventoryItem newItem, int i)
     {
         item = newItem;
         icon.sprite = item.displayImage;
         icon.enabled = true;
         btnElemnt.interactable = true;
+        index = i;
     }
 
     public void clearSlot()
@@ -28,7 +30,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (item != null)
         {
-            item.Use();
+            item.Use(index);
         }
     }
 }

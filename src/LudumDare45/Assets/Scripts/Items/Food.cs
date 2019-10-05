@@ -12,8 +12,10 @@ public class Food : InventoryItem
 
     public enum FoodType {food,drink}
 
-    public override void Use()
+    public override void Use(int invIndex)
     {
+        Debug.Log("InvSlot use item: " + name);
+
         if (foodType.Equals(FoodType.food)) {
             //TODO: Playsound
         } else {
@@ -38,5 +40,7 @@ public class Food : InventoryItem
         } else {
             PlayerManager.Instance.reduceEnergy(addEnergy);
         }
+
+        Inventory.Instance.removeFromInv(invIndex);
     }
 }
