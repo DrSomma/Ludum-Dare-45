@@ -838,6 +838,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   lookRight: 0
+  canMove: 1
+  canInteract: 1
 --- !u!212 &1198895457
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1877,6 +1879,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8383460859787110187, guid: 322634071ac9ee94f98726963b0457f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1302588750083243463, guid: 322634071ac9ee94f98726963b0457f8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1887,6 +1894,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 8924795252120211681, guid: 322634071ac9ee94f98726963b0457f8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7197377737016988967, guid: 322634071ac9ee94f98726963b0457f8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
