@@ -6,6 +6,8 @@ public class PlayerMovment : MonoBehaviour
 {
     public float speed = 2f;
     public bool lookRight = false;
+    public bool canMove = true;
+    public bool canInteract = true;
 
     private float movement;
 
@@ -27,13 +29,16 @@ public class PlayerMovment : MonoBehaviour
 
     void useItemKey()
     {
-        if (Input.GetKeyUp(KeyCode.F) && lastRayCastTarget!=null)
+        if (Input.GetKeyUp(KeyCode.F) && lastRayCastTarget!=null && canInteract)
         {
             lastRayCastTarget.playerInteractWithMe();
         }
     }
     void doMovment()
     {
+        if (!canMove)
+            return;
+
         float new_movement = Input.GetAxisRaw("Horizontal") * speed;
 
         checkViewDir(new_movement);
@@ -83,6 +88,15 @@ public class PlayerMovment : MonoBehaviour
     void FixedUpdate()
     { 
         transform.Translate(movement * Time.fixedDeltaTime, 0, 0);
+    }
+
+    public void StopMovment(bool b)
+    {
+        canMove = !b;
+    }
+    public void StopIntract(bool b)
+    {
+        canInteract = !b;
     }
 
     void checkViewDir(float mov)

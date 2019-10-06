@@ -78,6 +78,10 @@ public class PlayerManager : MonoBehaviour
         }
         energySlider.value = energy;
     }
+    public void fillUpEnergy()
+    {
+        energy = upgrades.maxEnergy;
+    }
     public void addMoney(int m)
     {
         money += m;
@@ -175,5 +179,11 @@ public class PlayerManager : MonoBehaviour
     public bool facingRight()
     {
         return movment.lookRight;
+    }
+
+    public void freezePlayer(bool b)
+    {
+        movment.StopMovment(b);
+        movment.StopIntract(b);
     }
 }
