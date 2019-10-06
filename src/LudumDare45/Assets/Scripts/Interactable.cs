@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public enum ObjectType { use, pickUp };
+    public enum ObjectType { use, pickUp, enter};
 
     public string objName = "ObjectName";
     public ObjectType type;

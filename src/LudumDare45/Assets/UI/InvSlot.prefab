@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 130751884471308550}
+  sellIcon: {fileID: 2263481052985785574}
+  isShopSlot: 0
   btnElemnt: {fileID: 130751884558087592}
   index: 0
 --- !u!1 &130751884471308548
@@ -117,7 +119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8119f745c4e61e3449ec44e3afb6d17f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

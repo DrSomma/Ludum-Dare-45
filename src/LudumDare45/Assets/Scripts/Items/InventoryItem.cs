@@ -16,15 +16,27 @@ public class InventoryItem : ScriptableObject
 
     public void Sell(int invIndex)
     {
+        if(sellPrice == 0)
+        {
+            Debug.Log("no sell price");
+            //TODO: MSG u cant sell this item
+            return;
+        }
+
         PlayerManager.Instance.addMoney(sellPrice);
         Inventory.Instance.removeFromInv(invIndex);
     }
 
     public void Buy(int invIndex)
     {
-        if (PlayerManager.Instance.reduceMoney(sellPrice))
+        if (PlayerManager.Instance.reduceMoney(buyPrice))
         {
             Inventory.Instance.addToInv(this);
+            Debug.Log("Buy: " + name);
+        }
+        else
+        {
+            Debug.Log("Buy: No Money");
         }
     }
 }

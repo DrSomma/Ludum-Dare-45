@@ -69,7 +69,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void UpdateUiForShop()
+    public void UpdateUiForShop()
     {
         for (int i = 0; i < slots.Length; i++)
         {
@@ -82,6 +82,7 @@ public class InventoryUI : MonoBehaviour
                 slots[i].setShopOpen(false);
             }
         }
+        changeUIVisible();
     }
 
     void UpdateUI() {

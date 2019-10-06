@@ -34,7 +34,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (item != null)
         {
-            if (!isShopOpen)
+            if (!isShopOpen && !isShopSlot)
             {
                 item.Use(index);
             }

@@ -8,8 +8,8 @@ public class interactUI : MonoBehaviour
 { 
     public TextMeshProUGUI txtMode;
     public GameObject bgImage;
-    public string[] modes = { "use", "pick up" };
-    public Color32[] colors = { new Color32(250, 250, 250, 255), new Color32(250, 0, 0, 255) };
+    public static string[] modes = { "use", "pick up", "enter"};
+    public static Color32[] colors = { new Color32(250, 250, 250, 255), new Color32(250, 0, 0, 255) };
 
     public const int COLOR_RED = 1;
     public const int COLOR_WHITE = 0;
