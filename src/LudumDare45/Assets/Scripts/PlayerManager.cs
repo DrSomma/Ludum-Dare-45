@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public float hunger = 100;
     public float thirst = 100;
     public float energy = 100;
+    public int money = 0;
 
     [Header("UI/slider")]
     public Slider hpSlider;
@@ -24,6 +25,9 @@ public class PlayerManager : MonoBehaviour
     public Slider energySlider;
 
     public static PlayerManager Instance;
+
+    public delegate void OnShopInteraction();
+    public OnShopInteraction onShopInteractionCallback;
 
     private void Awake()
     {
@@ -74,6 +78,10 @@ public class PlayerManager : MonoBehaviour
         }
         energySlider.value = energy;
     }
+    public void addMoney(int m)
+    {
+        money += m;
+    }
     #endregion
 
     #region func reduce stats
@@ -114,6 +122,13 @@ public class PlayerManager : MonoBehaviour
             //TODO
         }
     }
+    public bool reduceMoney(int m)
+    {
+        if (!checkMoney(m))
+            return false;
+        money -= m;
+        return true;
+    }
     #endregion
 
     #region var checks
@@ -129,12 +144,21 @@ public class PlayerManager : MonoBehaviour
     {
         return thirst >= t;
     }
+    public bool checkMoney(int m)
+    {
+        return money >= m;
+    }
     #endregion
 
     private void decreaseStats()
     {
         reduceHunger(upgrades.hungerLostRate);
         reduceThirst(upgrades.thirstLostRate);
+        if(hunger <= 0 || thirst <= 0)
+        {
+            reduceHP(hpReduceRate);
+            Debug.Log("hunger/thirst < 0 REDUCE HP");
+        }
         Debug.Log("reduce stats loop");
     }
 

@@ -4,10 +4,14 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
+    public Image sellIcon;
+    public bool isShopSlot = false;
     public Button btnElemnt;
     public int index;
 
     InventoryItem item;
+
+    private bool isShopOpen;
 
     public void addItem(InventoryItem newItem, int i)
     {
@@ -30,7 +34,29 @@ public class InventorySlot : MonoBehaviour
     {
         if (item != null)
         {
-            item.Use(index);
+            if (!isShopOpen)
+            {
+                item.Use(index);
+            }
+            else
+            {
+                if (isShopSlot)
+                {
+                    item.Buy(index);
+                }
+                else
+                {
+                    item.Sell(index);
+                }
+                
+            }
+            
         }
+    }
+
+    public void setShopOpen(bool b)
+    {
+        sellIcon.enabled = b;
+        isShopOpen = b;
     }
 }

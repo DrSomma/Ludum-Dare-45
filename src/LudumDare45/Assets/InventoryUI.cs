@@ -19,6 +19,8 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         playerManager = PlayerManager.Instance;
+        playerManager.onShopInteractionCallback += UpdateUiForShop;
+
         inventory = Inventory.Instance;
         inventory.onItemChangedCallback += UpdateUI;
 
@@ -64,6 +66,21 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(isOpen);
+        }
+    }
+
+    void UpdateUiForShop()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inventory.getSize())
+            {
+                slots[i].setShopOpen(true);
+            }
+            else
+            {
+                slots[i].setShopOpen(false);
+            }
         }
     }
 

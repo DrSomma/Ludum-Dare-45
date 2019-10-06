@@ -17,7 +17,7 @@ MonoBehaviour:
   buyPrice: 0
   displayName: ObjectName
   description: 404 description
-  addHunger: 0
+  addHunger: 10
   addThirst: 0
   addEnergy: 0
   foodType: 0
