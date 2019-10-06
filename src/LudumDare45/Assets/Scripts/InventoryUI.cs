@@ -9,8 +9,8 @@ public class InventoryUI : MonoBehaviour
 
     public Transform itemsParent;
     public bool isOpen;
-    public Vector3 posRight;
-    public Vector3 posLeft;
+    private Vector3 posRight;
+    private Vector3 posLeft;
 
     InventorySlot[] slots;
     private bool userCanCangeSatus = true;
@@ -25,6 +25,9 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+
+        posRight = transform.localPosition;
+        posLeft = new Vector3(-posRight.x, posRight.y, 0);
 
         isOpen = false;
         changeUIVisible();

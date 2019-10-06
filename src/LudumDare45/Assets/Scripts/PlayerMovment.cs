@@ -82,12 +82,13 @@ public class PlayerMovment : MonoBehaviour
         }
 
         movement = new_movement;
+        transform.Translate(movement * Time.fixedDeltaTime, 0, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     { 
-        transform.Translate(movement * Time.fixedDeltaTime, 0, 0);
+        //transform.Translate(movement * Time.fixedDeltaTime, 0, 0);
     }
 
     public void StopMovment(bool b)

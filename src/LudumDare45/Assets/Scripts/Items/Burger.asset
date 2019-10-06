@@ -17,6 +17,7 @@ MonoBehaviour:
   buyPrice: 0
   displayName: ObjectName
   description: 404 description
+  prefab: {fileID: 2585178435006489052, guid: 83004a80eb3351d4ebde25061c1b6e72, type: 3}
   addHunger: 10
   addThirst: 0
   addEnergy: 0

@@ -1,37 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
+public class Loot
+{  
+    public InventoryItem item;
+    public int dropRateInPercent;
+}
 
 public class Trashcan : InteractAction
 {
-    public GameObject loot;
     public float speed = 5f;
     public int maxSpawns = 2;
- 
-    private int countSpawned = 0;
+    public Loot[] loot;
+
+
+    public List<InventoryItem> drops;
+
+    private void Start()
+    {
+        drops = getDrops();
+    }
+
 
     public override bool doInteraction(float energy)
     {
-        if (canSpawn())
+        if (!canSpawn())
         {
             //TODO: Animation / Sound
             return false;
         }
-            
+
 
         //TODO: Loottable
-        GameObject ob = Instantiate(loot);
+        GameObject ob = Instantiate(drops[0].prefab);
+        drops.RemoveAt(0);
         Rigidbody2D rb = ob.GetComponent<Rigidbody2D>();
-        countSpawned += 1;
-        float posX = (50 + Random.Range(-10, 10)) * ((countSpawned % 2 == 0) ? -1 : 1);
-        rb.AddForce(new Vector2(posX, 400));
+        ob.transform.position = transform.position;
+        float posX = (30 + Random.Range(-10, 10)) * ((drops.Count % 2 == 0) ? -1 : 1);
+        rb.AddForce(new Vector2(posX, 350));
+        
 
         return true;
     }
 
     public bool canSpawn()
     {
-        return countSpawned >= maxSpawns;
+        return drops.Count > 0;
+    }
+
+    private List<InventoryItem> getDrops()
+    {
+        List<InventoryItem> dropList = new List<InventoryItem>();
+        for (int x = 0; x < maxSpawns; x++)
+        {
+            for (int i = 0; i < loot.Length; i++)
+            {
+                if (Random.Range(0, 100) <= loot[i].dropRateInPercent)
+                {
+                    dropList.Add(loot[i].item);
+                    break;
+                }
+            }
+        }
+        
+
+        return dropList;
     }
 
 }

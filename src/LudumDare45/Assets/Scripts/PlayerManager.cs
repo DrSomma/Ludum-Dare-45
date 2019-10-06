@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     [Header("config")]
     public float hpReduceRate = 1f;
     public float loopTime = 4f;
-    public PlayerUpgrades upgrades;
+    private PlayerUpgrades upgrades;
     public PlayerMovment movment;
 
     [Header("current stats")]
@@ -19,17 +19,13 @@ public class PlayerManager : MonoBehaviour
     public float hygiene = 100;
     public int money = 0;
 
-    [Header("UI/slider")]
-    public Slider hpSlider;
-    public Slider hungerSlider;
-    public Slider thirstSlider;
-    public Slider energySlider;
-    public Slider hygieneSlider;
-
     public static PlayerManager Instance;
 
     public delegate void OnShopInteraction();
     public OnShopInteraction onShopInteractionCallback;
+
+    public delegate void OnStatsChange();
+    public OnStatsChange onStatsChangeCallback;
 
     private void Awake()
     {
@@ -51,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         {
             hp = upgrades.maxHP;
         }
-        hpSlider.value = (hp/ upgrades.maxHP);
+        onStatsChangeCallback.Invoke();
     }
     public void addHunger(float cnt)
     {
@@ -60,11 +56,12 @@ public class PlayerManager : MonoBehaviour
         {
             hunger = upgrades.maxHunger;
         }
-        hungerSlider.value = hunger/ upgrades.maxHunger;
+        onStatsChangeCallback.Invoke();
     }
     public void fillUpHunger()
     {
         hunger = upgrades.maxHunger;
+        onStatsChangeCallback.Invoke();
     }
     public void addThirst(float cnt)
     {
@@ -73,11 +70,12 @@ public class PlayerManager : MonoBehaviour
         {
             thirst = upgrades.maxThirst;
         }
-        thirstSlider.value = thirst/ upgrades.maxThirst;
+        onStatsChangeCallback.Invoke();
     }
     public void fillUpThirst()
     {
         thirst = upgrades.maxThirst;
+        onStatsChangeCallback.Invoke();
     }
     public void addEnergy(float cnt)
     {
@@ -85,12 +83,13 @@ public class PlayerManager : MonoBehaviour
         if (energy > upgrades.maxEnergy)
         {
             energy = upgrades.maxEnergy;
-        }
-        energySlider.value = energy;
+        }   
+        onStatsChangeCallback.Invoke();
     }
     public void fillUpEnergy()
     {
         energy = upgrades.maxEnergy;
+        onStatsChangeCallback.Invoke();
     }
     public void addHygiene(float cnt)
     {
@@ -99,15 +98,17 @@ public class PlayerManager : MonoBehaviour
         {
             hygiene = upgrades.maxHygiene;
         }
-        hygieneSlider.value = hygiene;
+        onStatsChangeCallback.Invoke();
     }
     public void fillUpHygiene()
     {
         hygiene = upgrades.maxHygiene;
+        onStatsChangeCallback.Invoke();
     }
     public void addMoney(int m)
     {
         money += m;
+        onStatsChangeCallback.Invoke();
     }
     #endregion
 
@@ -115,7 +116,7 @@ public class PlayerManager : MonoBehaviour
     public void reduceHP(float cnt)
     {
         hp = hp - cnt;
-        hpSlider.value = hp/upgrades.maxHP;
+        onStatsChangeCallback.Invoke();
         if (hp <= 0)
         {
             //TODO: GAME OVER
@@ -125,7 +126,7 @@ public class PlayerManager : MonoBehaviour
     public void reduceHunger(float cnt)
     {
         hunger = hunger - cnt;
-        hungerSlider.value = hunger/upgrades.maxHunger;
+        onStatsChangeCallback.Invoke();
         if (hunger <= 0)
         {
             //TODO
@@ -134,7 +135,7 @@ public class PlayerManager : MonoBehaviour
     public void reduceThirst(float cnt)
     {
         thirst = thirst - cnt;
-        thirstSlider.value = thirst/upgrades.maxThirst;
+        onStatsChangeCallback.Invoke();
         if (thirst <= 0)
         {
             //TODO
@@ -143,7 +144,7 @@ public class PlayerManager : MonoBehaviour
     public void reduceEnergy(float cnt)
     {
         energy = energy - cnt;
-        energySlider.value = energy / upgrades.maxEnergy;
+        onStatsChangeCallback.Invoke();
         if (hp <= 0)
         {
             //TODO
@@ -191,11 +192,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        hpSlider.value = hp / upgrades.maxHP;
-        hungerSlider.value = hunger / upgrades.maxHunger;
-        thirstSlider.value = thirst / upgrades.maxThirst;
-        energySlider.value = energy / upgrades.maxEnergy;
-
+        upgrades = PlayerUpgrades.instance;
         InvokeRepeating("decreaseStats", loopTime, loopTime);  //1s delay, repeat every 1s
     }
 
