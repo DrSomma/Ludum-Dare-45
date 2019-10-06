@@ -5,12 +5,24 @@ using UnityEngine;
 public class CarMovement : MonoBehaviour
 {
     public bool canMove = false;
-    public float speed = 5f;
     public bool moveRight = true;
+    public bool randomSpeed = false;
+    public float minSpeed = 1f;
+    public float maxSpeed = 5f;
+
     public Vector3 endPoint;
+    private float speed;
 
     void Start()
     {
+        if (randomSpeed)
+        {
+            speed = Random.Range(minSpeed, maxSpeed);
+        }
+        else
+        {
+            speed = maxSpeed;
+        }
     }
 
     void Update()
