@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 370011984}
-  smoothSpeed: 4
+  smoothSpeed: 2
   offsetX: 5
   offsetY: 0
   maxPosLeft: {fileID: 1063479464}

@@ -13,7 +13,6 @@ public class CameraFollow : MonoBehaviour
 
     private Transform target;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +22,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         float xPos = target.position.x + offsetX * (player.lookRight ? 1 : -1);
+
         Vector3 newPos = new Vector3(
                 Mathf.Clamp(xPos, maxPosLeft.position.x,maxPosRight.position.x),
                 target.position.y + offsetY,
