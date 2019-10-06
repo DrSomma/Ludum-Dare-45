@@ -5645,6 +5645,7 @@ MonoBehaviour:
   inStock:
   - {fileID: 11400000, guid: ae6c805c31d35174ebfbf57183dec6cf, type: 2}
   itemsParent: {fileID: 1457026913}
+  shopUIObject: {fileID: 1050962202}
   isOpen: 0
 --- !u!222 &3693705619432841566
 CanvasRenderer:
