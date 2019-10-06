@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public float hunger = 100;
     public float thirst = 100;
     public float energy = 100;
+    public float hygiene = 100;
     public int money = 0;
 
     [Header("UI/slider")]
@@ -23,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public Slider hungerSlider;
     public Slider thirstSlider;
     public Slider energySlider;
+    public Slider hygieneSlider;
 
     public static PlayerManager Instance;
 
@@ -60,6 +62,10 @@ public class PlayerManager : MonoBehaviour
         }
         hungerSlider.value = hunger/ upgrades.maxHunger;
     }
+    public void fillUpHunger()
+    {
+        hunger = upgrades.maxHunger;
+    }
     public void addThirst(float cnt)
     {
         thirst = thirst + cnt;
@@ -68,6 +74,10 @@ public class PlayerManager : MonoBehaviour
             thirst = upgrades.maxThirst;
         }
         thirstSlider.value = thirst/ upgrades.maxThirst;
+    }
+    public void fillUpThirst()
+    {
+        thirst = upgrades.maxThirst;
     }
     public void addEnergy(float cnt)
     {
@@ -81,6 +91,19 @@ public class PlayerManager : MonoBehaviour
     public void fillUpEnergy()
     {
         energy = upgrades.maxEnergy;
+    }
+    public void addHygiene(float cnt)
+    {
+        hygiene = hygiene + cnt;
+        if (hygiene > upgrades.maxHygiene)
+        {
+            hygiene = upgrades.maxHygiene;
+        }
+        hygieneSlider.value = hygiene;
+    }
+    public void fillUpHygiene()
+    {
+        hygiene = upgrades.maxHygiene;
     }
     public void addMoney(int m)
     {

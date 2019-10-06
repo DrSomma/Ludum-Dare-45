@@ -10,10 +10,12 @@ public class PlayerUpgrades : MonoBehaviour
     public float maxHunger = 100;
     public float maxThirst = 100;
     public float maxEnergy = 100;
+    public float maxHygiene = 100;
 
     public float hungerLostRate = 1f;
     public float thirstLostRate = 1f;
     public float energyLostRate = 1f;
+    public float hygieneLostRate = 1f;
 
     private void Awake()
     {
