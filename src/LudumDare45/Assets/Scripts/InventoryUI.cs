@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -8,12 +9,25 @@ public class InventoryUI : MonoBehaviour
     private PlayerManager playerManager; 
 
     public Transform itemsParent;
+    public Transform invParent;
     public bool isOpen;
     private Vector3 posRight;
     private Vector3 posLeft;
 
     InventorySlot[] slots;
     private bool userCanCangeSatus = true;
+
+    [Header("Shop")]
+    public Transform itemsParentShop;
+    public Transform shopUIObjectShop;
+
+    [Header("Player")]
+    public Transform follow;
+    public float offsetX;
+    public float offsetY;
+
+    private bool playerAtStore;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +39,13 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        //Hide all unused slots
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].gameObject.SetActive(i < inventory.maxSize);
+        }
+        calcScaling();
+        UpdateUI();
 
         posRight = transform.localPosition;
         posLeft = new Vector3(-posRight.x, posRight.y, 0);
@@ -33,7 +54,27 @@ public class InventoryUI : MonoBehaviour
         changeUIVisible();
     }
 
+    void calcScaling()
+    {
+        if(inventory.maxSize > 12)
+        {
+            itemsParent.transform.localScale = new Vector3(0.7f, 0.7f);
+        }
+        else
+        {
+            if (inventory.maxSize <= 4)
+            {
+                itemsParent.transform.localScale = new Vector3(1.5f, 1.5f);
+            }
+            else
+            {
+                itemsParent.transform.localScale = Vector3.one;
+            }
+        }
+    }
+
     // Update is called once per frame
+    private Vector3 tar;
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.E))
@@ -46,12 +87,13 @@ public class InventoryUI : MonoBehaviour
         {
             if (playerManager.facingRight())
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, posLeft,Time.deltaTime * 4f);
+                tar = new Vector3(follow.position.x - offsetX, follow.position.y + offsetY, 0);
             }
             else
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, posRight, Time.deltaTime * 4f);
+                tar = new Vector3(follow.position.x + offsetX, follow.position.y + offsetY, 0);
             }
+            transform.position = Vector3.Lerp(transform.position, tar, Time.deltaTime * 4f);
         }
     }
 
@@ -59,21 +101,28 @@ public class InventoryUI : MonoBehaviour
     {
         if (playerManager.facingRight())
         {
-            transform.localPosition = posLeft;
+            tar = new Vector3(follow.position.x - offsetX, follow.position.y + offsetY, 0);
+            transform.localPosition = tar;
         }
         else
         {
-            transform.localPosition = posRight ;
+            tar = new Vector3(follow.position.x + offsetX, follow.position.y + offsetY, 0);
+            transform.localPosition = tar;
         }
 
-        foreach (Transform child in transform)
+        //Hide/Show UI
+        invParent.gameObject.SetActive(isOpen);
+        if (playerAtStore)
         {
-            child.gameObject.SetActive(isOpen);
+            shopUIObjectShop.gameObject.SetActive(isOpen);
         }
     }
 
     public void UpdateUiForShop()
     {
+        Debug.Log("INV Shop UI");
+        playerAtStore = true;
+        isOpen = true;
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < inventory.getSize())

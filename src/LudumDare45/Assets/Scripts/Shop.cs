@@ -9,8 +9,10 @@ public class Shop : InteractAction
     private Inventory inventory;
     private PlayerManager playerManager;
 
-    public Transform itemsParent;
-    public Transform shopUIObject;
+    public InventoryUI invUI;
+
+    private Transform itemsParent;
+    private Transform shopUIObject;
     public bool isOpen;
 
     InventorySlot[] slots;
@@ -18,18 +20,20 @@ public class Shop : InteractAction
 
     void Start()
     {
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-
         isOpen = false;
-        changeUIVisible();
+        playerManager = PlayerManager.Instance;
     }
 
     void changeUIVisible()
     {
-        foreach (Transform child in shopUIObject)
+        //First open
+        if(slots == null)
         {
-           child.gameObject.SetActive(isOpen);
+            this.itemsParent = invUI.itemsParentShop;
+            shopUIObject = invUI.shopUIObjectShop;
+            slots = itemsParent.GetComponentsInChildren<InventorySlot>();
         }
+        //shopUIObject.gameObject.SetActive(isOpen);
     }
 
 
@@ -42,7 +46,9 @@ public class Shop : InteractAction
     public void openShopUI()
     {
         Debug.Log("Openshop");
-        //playerManager.onShopInteractionCallback.Invoke();
+        if(playerManager.onShopInteractionCallback != null)
+            playerManager.onShopInteractionCallback.Invoke();
+
         isOpen = true;
         changeUIVisible();
         UpdateUI();

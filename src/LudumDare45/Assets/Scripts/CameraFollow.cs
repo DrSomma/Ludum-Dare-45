@@ -22,6 +22,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 newPos;
     private Vector3 smoothPos;
     float xPos;
+
+
     void LateUpdate()
     {
         xPos = target.position.x + offsetX * (player.lookRight ? 1 : -1);
@@ -32,5 +34,6 @@ public class CameraFollow : MonoBehaviour
                 transform.position.z);
         smoothPos = Vector3.Lerp(transform.position, newPos, smoothSpeed *  Time.deltaTime);
         transform.position = smoothPos;
+       
     }
 }

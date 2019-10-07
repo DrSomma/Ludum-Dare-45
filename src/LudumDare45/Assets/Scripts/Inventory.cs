@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     public List<InventoryItem> invItems;
-    public int size;
+    public int maxSize;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
 
     public bool addToInv(InventoryItem item)
     {
-        if(getSize() < size)
+        if(getSize() < maxSize)
         {
             invItems.Add(item);
             if(onItemChangedCallback != null)
@@ -46,6 +46,9 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
+    /*
+     * Get Number of Items in Inv
+     */
     public int getSize()
     {
         return invItems.Count;
