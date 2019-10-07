@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
@@ -8,10 +9,10 @@ public class InventorySlot : MonoBehaviour
     public bool isShopSlot = false;
     public Button btnElemnt;
     public int index;
+    public Image priceTagImage;
+    public TextMeshProUGUI priceTxt;
 
     InventoryItem item;
-
-    private bool isShopOpen;
 
     public void addItem(InventoryItem newItem, int i)
     {
@@ -20,6 +21,20 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = true;
         btnElemnt.interactable = true;
         index = i;
+        if (isShopSlot)
+        {
+            priceTxt.text = item.buyPrice + "$";
+        }
+        else
+        {
+            priceTxt.text = item.sellPrice + "$";
+        }
+        
+        if (Shop.shopOpen)
+        {
+            priceTagImage.gameObject.SetActive(true);
+        }
+        
     }
 
     public void clearSlot()
@@ -28,13 +43,14 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
         btnElemnt.interactable = false;
+        priceTagImage.gameObject.SetActive(false);
     }
 
     public void useItem()
     {
         if (item != null)
         {
-            if (!isShopOpen && !isShopSlot)
+            if (!Shop.shopOpen && !isShopSlot)
             {
                 item.Use(index);
             }
@@ -57,6 +73,6 @@ public class InventorySlot : MonoBehaviour
     public void setShopOpen(bool b)
     {
         sellIcon.enabled = b;
-        isShopOpen = b;
+        priceTagImage.gameObject.SetActive(b);
     }
 }

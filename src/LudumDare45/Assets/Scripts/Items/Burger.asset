@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Burger
   m_EditorClassIdentifier: 
   displayImage: {fileID: 21300000, guid: 8119f745c4e61e3449ec44e3afb6d17f, type: 3}
-  sellPrice: 0
-  buyPrice: 0
+  sellPrice: 10
+  buyPrice: 99
   displayName: ObjectName
   description: 404 description
   prefab: {fileID: 2585178435006489052, guid: 83004a80eb3351d4ebde25061c1b6e72, type: 3}

@@ -112,29 +112,39 @@ public class InventoryUI : MonoBehaviour
 
         //Hide/Show UI
         invParent.gameObject.SetActive(isOpen);
-        if (playerAtStore)
-        {
-            shopUIObjectShop.gameObject.SetActive(isOpen);
-        }
+        shopUIObjectShop.gameObject.SetActive(playerAtStore);
     }
 
     public void UpdateUiForShop()
     {
         Debug.Log("INV Shop UI");
-        playerAtStore = true;
-        isOpen = true;
-        for (int i = 0; i < slots.Length; i++)
+        if (Shop.shopOpen)
         {
-            if (i < inventory.getSize())
+            playerAtStore = true;
+            isOpen = true;
+            for (int i = 0; i < slots.Length; i++)
             {
-                slots[i].setShopOpen(true);
+                if (i < inventory.getSize())
+                {
+                    slots[i].setShopOpen(true);
+                }
+                else
+                {
+                    slots[i].setShopOpen(false);
+                }
             }
-            else
+            changeUIVisible();
+        }
+        else
+        {
+            playerAtStore = false;
+            isOpen = false;
+            for (int i = 0; i < slots.Length; i++)
             {
                 slots[i].setShopOpen(false);
             }
+            changeUIVisible();
         }
-        changeUIVisible();
     }
 
     void UpdateUI() {

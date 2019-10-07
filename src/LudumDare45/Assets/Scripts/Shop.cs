@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shop : InteractAction
 {
+    public static bool shopOpen = false;
+
     public List<InventoryItem> inStock;
 
     private Inventory inventory;
@@ -13,14 +15,17 @@ public class Shop : InteractAction
 
     private Transform itemsParent;
     private Transform shopUIObject;
-    public bool isOpen;
+    public bool thisShopIsOpen;
 
     InventorySlot[] slots;
     private bool userCanCangeSatus = true;
 
+    private Transform playerPos;
+    public float maxDis = 3f;
+
     void Start()
     {
-        isOpen = false;
+        thisShopIsOpen = false;
         playerManager = PlayerManager.Instance;
     }
 
@@ -39,17 +44,40 @@ public class Shop : InteractAction
 
     public override bool doInteraction(float energy)
     {
-        openShopUI();
+        Debug.Log("........." + Shop.shopOpen);
+        if (Shop.shopOpen)
+        {
+            closeShopUI();
+        }
+        else
+        {
+            openShopUI();
+        }
         return true;
+    }
+
+    private void closeShopUI()
+    {
+        Debug.Log("closeShopUI");
+
+        thisShopIsOpen = false;
+        Shop.shopOpen = false;
+
+        if (playerManager.onShopInteractionCallback != null)
+            playerManager.onShopInteractionCallback.Invoke();
     }
 
     public void openShopUI()
     {
+        Shop.shopOpen = true;
+        thisShopIsOpen = true;
+
         Debug.Log("Openshop");
         if(playerManager.onShopInteractionCallback != null)
             playerManager.onShopInteractionCallback.Invoke();
 
-        isOpen = true;
+        playerPos = PlayerManager.Instance.gameObject.transform;
+
         changeUIVisible();
         UpdateUI();
     }
@@ -72,9 +100,13 @@ public class Shop : InteractAction
 
     private void Update()
     {
-        if (!isOpen)
+        if (!thisShopIsOpen)
             return;
         
-       //TODO: Shop schließen
+        if(Vector3.Distance(transform.position,playerPos.position) > maxDis)
+        {
+            Debug.Log("xxxxxxSHOP player DIS" + Vector3.Distance(transform.position, playerPos.position));
+            closeShopUI();
+        }
     }
 }

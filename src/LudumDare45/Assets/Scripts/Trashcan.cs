@@ -13,6 +13,12 @@ public class Trashcan : InteractAction
     public float speed = 5f;
     public int maxSpawns = 2;
     public Loot[] loot;
+    public Animator animator;
+
+    public Sprite usedSprit;
+    public SpriteRenderer render;
+    private Sprite normalSprite;
+
 
 
     public List<InventoryItem> drops;
@@ -20,17 +26,22 @@ public class Trashcan : InteractAction
     private void Start()
     {
         drops = getDrops();
+        normalSprite = render.sprite;
     }
 
 
     public override bool doInteraction(float energy)
     {
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+        animator.SetTrigger("searchTrash");
+        render.sprite = usedSprit;
+
         if (!canSpawn())
         {
             //TODO: Animation / Sound
             return false;
         }
-
 
         //TODO: Loottable
         GameObject ob = Instantiate(drops[0].prefab);
@@ -39,7 +50,6 @@ public class Trashcan : InteractAction
         ob.transform.position = transform.position;
         float posX = (30 + Random.Range(-10, 10)) * ((drops.Count % 2 == 0) ? -1 : 1);
         rb.AddForce(new Vector2(posX, 350));
-        
 
         return true;
     }
