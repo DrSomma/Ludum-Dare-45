@@ -28,7 +28,7 @@ public class CarSpawner : MonoBehaviour
             return;
 
         GameObject carPre = cars[Random.Range(0, cars.Length)];
-        Debug.Log("Spawn Car " + carPre.name);
+        //Debug.Log("Spawn Car " + carPre.name);
         GameObject obj = Instantiate(carPre);
         obj.transform.position = transform.position;
         CarMovement movement = obj.GetComponent<CarMovement>();
