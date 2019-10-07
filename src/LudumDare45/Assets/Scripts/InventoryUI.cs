@@ -112,7 +112,7 @@ public class InventoryUI : MonoBehaviour
 
         //Hide/Show UI
         invParent.gameObject.SetActive(isOpen);
-        shopUIObjectShop.gameObject.SetActive(playerAtStore);
+        shopUIObjectShop.gameObject.SetActive(playerAtStore && isOpen);
     }
 
     public void UpdateUiForShop()
