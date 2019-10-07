@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
+    public Animator animator;
     public float speed = 2f;
     public bool lookRight = false;
     public bool canMove = true;
@@ -83,6 +84,10 @@ public class PlayerMovment : MonoBehaviour
 
         movement = new_movement;
         transform.Translate(movement * Time.fixedDeltaTime, 0, 0);
+
+        animator.SetBool("isMoving", movement != 0);
+        animator.SetBool("isFacingRight", lookRight);
+
     }
 
     // Update is called once per frame
