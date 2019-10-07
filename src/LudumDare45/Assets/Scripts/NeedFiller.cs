@@ -7,7 +7,9 @@ public class NeedFiller : InteractAction
     public enum Needs {sleep, hygiene, water};
     public Needs fillNeed;
 
-    public DayNightCycle dayNightCycle;
+    public Transform sleepingBubble;
+
+    private DayNightCycle dayNightCycle;
 
     private void Start()
     {
@@ -33,11 +35,15 @@ public class NeedFiller : InteractAction
             PlayerManager.Instance.freezePlayer(true);
             Debug.Log("Speedup");
 
+            sleepingBubble.position = new Vector3(PlayerManager.Instance.transform.position.x - 0.2f, PlayerManager.Instance.transform.position.y + 1.3f,0);
+
             yield return new WaitUntil(() => (int)dayNightCycle.curDayTime == endTimeInt);
 
             DayNightCycle.Instance.normalTime();
             PlayerManager.Instance.freezePlayer(false);
             PlayerManager.Instance.fillUpEnergy();
+
+            
         }
 
         if (fillNeed.Equals(Needs.hygiene))
