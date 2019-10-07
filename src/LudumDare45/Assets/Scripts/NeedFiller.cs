@@ -36,8 +36,11 @@ public class NeedFiller : InteractAction
             Debug.Log("Speedup");
 
             sleepingBubble.position = new Vector3(PlayerManager.Instance.transform.position.x - 0.2f, PlayerManager.Instance.transform.position.y + 1.3f,0);
+            sleepingBubble.gameObject.SetActive(true);
 
             yield return new WaitUntil(() => (int)dayNightCycle.curDayTime == endTimeInt);
+
+            sleepingBubble.gameObject.SetActive(false);
 
             DayNightCycle.Instance.normalTime();
             PlayerManager.Instance.freezePlayer(false);
