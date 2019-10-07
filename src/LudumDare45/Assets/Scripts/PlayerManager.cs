@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     #region add stats
