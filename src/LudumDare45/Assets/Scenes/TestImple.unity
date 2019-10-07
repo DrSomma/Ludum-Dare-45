@@ -617,12 +617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 303111906}
   normalizedTime: 1
-  timeDay: 10
-  timeNight: 10
-  timeSunset: 5
-  timeSunrise: 5
-  gameTimer: 11
-  pauseTime: 1
+  dayTime: 30
+  gameTimer: 0
+  pauseTime: 0
+  realTimeDisplay: 
   curDayTime: 0
 --- !u!95 &303111906
 Animator:
