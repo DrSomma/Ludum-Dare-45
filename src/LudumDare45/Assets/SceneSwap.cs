@@ -14,24 +14,11 @@ public class SceneSwap : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-            Destroy(this.gameObject);
+       // if (Instance != null)
+         //   Destroy(this.gameObject);
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            FadeToNextLevel();
-        }
-    }
-
-    public void FadeToNextLevel()
-    {
-        FadeToLevel(1);
-    }
 
     public void FadeToLevel(int levelIndex)
     {

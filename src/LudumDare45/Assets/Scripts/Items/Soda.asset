@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e97a3c339ee0cb845b118b24cca31263, type: 3}
-  m_Name: Burger
+  m_Name: Soda
   m_EditorClassIdentifier: 
-  displayImage: {fileID: 21300000, guid: 8119f745c4e61e3449ec44e3afb6d17f, type: 3}
-  sellPrice: 5
-  buyPrice: 10
-  displayName: ObjectName
+  displayImage: {fileID: 21300000, guid: 7bf9cebe5e06e1f4fb4e9d93998fc132, type: 3}
+  sellPrice: 10
+  buyPrice: 40
+  displayName: Soda
   description: 404 description
-  prefab: {fileID: 2585178435006489052, guid: 83004a80eb3351d4ebde25061c1b6e72, type: 3}
-  addHunger: 10
-  addThirst: 0
+  prefab: {fileID: 90900659020662333, guid: 0272f5b6c467ce5418cb01fe51b4da46, type: 3}
+  addHunger: 0
+  addThirst: 10
   addEnergy: 0
-  foodType: 0
+  foodType: 1

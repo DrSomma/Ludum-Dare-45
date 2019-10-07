@@ -227,8 +227,12 @@ MonoBehaviour:
   speed: 10
   maxSpawns: 2
   loot:
-  - item: {fileID: 11400000, guid: ae6c805c31d35174ebfbf57183dec6cf, type: 2}
+  - item: {fileID: 11400000, guid: 41260f38c63f9b248aadc3b2d14e7cd7, type: 2}
     dropRateInPercent: 80
+  - item: {fileID: 11400000, guid: ae6c805c31d35174ebfbf57183dec6cf, type: 2}
+    dropRateInPercent: 10
+  - item: {fileID: 11400000, guid: e1879d6142f8adc47860533ab6743f44, type: 2}
+    dropRateInPercent: 20
   animator: {fileID: 2725549446875015688}
   usedSprit: {fileID: 21300000, guid: b4111cb18c817d749ade382d615c7981, type: 3}
   render: {fileID: 2450536137067145574}
