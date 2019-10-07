@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4901978975494754656}
   - component: {fileID: 3049516453157863695}
   - component: {fileID: 7046331392604934937}
+  - component: {fileID: 2347416771229203651}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -69,9 +70,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 2eeba4d6702f56641821c11b92dd1b8a, type: 3}
-  m_Color: {r: 0.6375065, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,7 +94,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea450743ce8fdcb4eae2e43b08ecf672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2347416771229203651}
   canMove: 0
-  speed: 5
   moveRight: 1
+  randomSpeed: 0
+  minSpeed: 1
+  maxSpeed: 5
   endPoint: {x: 0, y: 0, z: 0}
+--- !u!95 &2347416771229203651
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463558976035652488}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7aeb90ea77880b84395f5bb930308cdc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

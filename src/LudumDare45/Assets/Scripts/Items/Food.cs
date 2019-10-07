@@ -17,9 +17,9 @@ public class Food : InventoryItem
         Debug.Log("InvSlot use item: " + name);
 
         if (foodType.Equals(FoodType.food)) {
-            //TODO: Playsound
+            FindObjectOfType<AudioManager>().Play("eating");
         } else {
-            //TODO: Playsound
+            FindObjectOfType<AudioManager>().Play("drinking");
         }
 
         if (addHunger > 0){

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+    public Animator animator;
+
     public bool canMove = false;
     public bool moveRight = true;
     public bool randomSpeed = false;
@@ -36,5 +38,7 @@ public class CarMovement : MonoBehaviour
         {
            Destroy(this.gameObject);
         }
+
+        animator.SetBool("isFacingRight", moveRight);
     }
 }
