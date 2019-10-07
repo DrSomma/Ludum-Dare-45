@@ -19,15 +19,18 @@ public class CameraFollow : MonoBehaviour
         target = player.gameObject.transform;
     }
 
+    private Vector3 newPos;
+    private Vector3 smoothPos;
+    float xPos;
     void LateUpdate()
     {
-        float xPos = target.position.x + offsetX * (player.lookRight ? 1 : -1);
+        xPos = target.position.x + offsetX * (player.lookRight ? 1 : -1);
 
-        Vector3 newPos = new Vector3(
+        newPos = new Vector3(
                 Mathf.Clamp(xPos, maxPosLeft.position.x,maxPosRight.position.x),
                 target.position.y + offsetY,
                 transform.position.z);
-        Vector3 smoothPos = Vector3.Lerp(transform.position, newPos, smoothSpeed *  Time.deltaTime);
+        smoothPos = Vector3.Lerp(transform.position, newPos, smoothSpeed *  Time.deltaTime);
         transform.position = smoothPos;
     }
 }

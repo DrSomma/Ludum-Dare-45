@@ -8,6 +8,7 @@ public class InventoryItem : ScriptableObject
     public int buyPrice = 0;
     public string displayName = "ObjectName";
     public string description = "404 description";
+    public GameObject prefab;
 
     public virtual void Use(int invIndex)
     {
