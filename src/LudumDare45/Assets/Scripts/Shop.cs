@@ -20,7 +20,7 @@ public class Shop : InteractAction
     InventorySlot[] slots;
     private bool userCanCangeSatus = true;
 
-    private Transform playerPos;
+    public Transform playerPos;
     public float maxDis = 3f;
 
     void Start()
@@ -75,8 +75,6 @@ public class Shop : InteractAction
         Debug.Log("Openshop");
         if(playerManager.onShopInteractionCallback != null)
             playerManager.onShopInteractionCallback.Invoke();
-
-        playerPos = PlayerManager.Instance.gameObject.transform;
 
         changeUIVisible();
         UpdateUI();

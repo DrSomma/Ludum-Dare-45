@@ -44,7 +44,7 @@ public class NeedFiller : InteractAction
 
             DayNightCycle.Instance.normalTime();
             PlayerManager.Instance.freezePlayer(false);
-            PlayerManager.Instance.fillUpEnergy();
+            PlayerManager.Instance.fillUpEnergy(); 
 
             
         }

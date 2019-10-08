@@ -53,7 +53,7 @@ public class DayNightCycle : MonoBehaviour
 
     public void fastForward()
     {
-        speed = 5;
+        speed = 10;
     }
     public void normalTime()
     {

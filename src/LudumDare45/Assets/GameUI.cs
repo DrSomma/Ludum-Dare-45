@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameUI : MonoBehaviour
     public Slider thirstSlider;
     public Slider energySlider;
     public Slider hygieneSlider;
+    public TextMeshProUGUI txtMoney;
 
     private PlayerManager playerManager;
     private PlayerUpgrades playerUpgrades;
@@ -27,7 +29,8 @@ public class GameUI : MonoBehaviour
         hungerSlider.value = (playerManager.hunger / playerUpgrades.maxHunger);
         thirstSlider.value = (playerManager.thirst / playerUpgrades.maxThirst);
         energySlider.value = (playerManager.energy / playerUpgrades.maxEnergy); 
-        hygieneSlider.value = (playerManager.hygiene / playerUpgrades.maxHygiene); 
+        hygieneSlider.value = (playerManager.hygiene / playerUpgrades.maxHygiene);
+        txtMoney.text = playerManager.money + "$";
         //TODO: Money
     }
 }

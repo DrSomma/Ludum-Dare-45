@@ -28,6 +28,8 @@ public class InventoryUI : MonoBehaviour
 
     private bool playerAtStore;
 
+    public PlayerMovment movment;
+
 
     // Start is called before the first frame update
     void Start()
@@ -85,7 +87,7 @@ public class InventoryUI : MonoBehaviour
 
         if (isOpen)
         {
-            if (playerManager.facingRight())
+            if (movment.lookRight)
             {
                 tar = new Vector3(follow.position.x - offsetX, follow.position.y + offsetY, 0);
             }
@@ -99,7 +101,7 @@ public class InventoryUI : MonoBehaviour
 
     void changeUIVisible()
     {
-        if (playerManager.facingRight())
+        if (movment.lookRight)
         {
             tar = new Vector3(follow.position.x - offsetX, follow.position.y + offsetY, 0);
             transform.localPosition = tar;

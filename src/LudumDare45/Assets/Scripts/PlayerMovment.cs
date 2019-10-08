@@ -39,6 +39,8 @@ public class PlayerMovment : MonoBehaviour
     {
         if (!canMove)
             return;
+        if (!PlayerManager.Instance.allowMovment)
+            return;
 
         float new_movement = Input.GetAxisRaw("Horizontal") * speed;
 

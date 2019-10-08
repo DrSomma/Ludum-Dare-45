@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,6 @@ public class PlayerManager : MonoBehaviour
     public float hpReduceRate = 1f;
     public float loopTime = 4f;
     private PlayerUpgrades upgrades;
-    public PlayerMovment movment;
 
     [Header("current stats")]
     public float hp = 100;
@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
     public float energy = 100;
     public float hygiene = 100;
     public int money = 0;
+
+    public bool allowMovment = true;
 
     public static PlayerManager Instance;
 
@@ -38,6 +40,11 @@ public class PlayerManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void freezePlayer(bool v)
+    {
+        allowMovment = !v;
     }
 
     #region add stats
@@ -195,16 +202,5 @@ public class PlayerManager : MonoBehaviour
     {
         upgrades = PlayerUpgrades.instance;
         InvokeRepeating("decreaseStats", loopTime, loopTime);  //1s delay, repeat every 1s
-    }
-
-    public bool facingRight()
-    {
-        return movment.lookRight;
-    }
-
-    public void freezePlayer(bool b)
-    {
-        movment.StopMovment(b);
-        movment.StopIntract(b);
     }
 }

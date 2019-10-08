@@ -14,9 +14,10 @@ public class SceneSwap : MonoBehaviour
 
     private void Awake()
     {
-       // if (Instance != null)
-         //   Destroy(this.gameObject);
+        //if (Instance != null)
+          //  Destroy(this.gameObject);
         Instance = this;
+        Debug.Log("SceneSwap");
     }
 
 

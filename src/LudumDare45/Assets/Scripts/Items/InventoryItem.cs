@@ -13,6 +13,10 @@ public class InventoryItem : ScriptableObject
     public virtual void Use(int invIndex)
     {
         Debug.Log("Use Item: " + displayName);
+        if (displayName.Equals("Lotto"))
+        {
+            SceneSwap.Instance.FadeToLevel(2);
+        }
     }
 
     public void Sell(int invIndex)

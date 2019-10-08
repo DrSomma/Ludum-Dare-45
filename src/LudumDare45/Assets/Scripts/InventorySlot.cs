@@ -72,7 +72,7 @@ public class InventorySlot : MonoBehaviour
 
     public void setShopOpen(bool b)
     {
-        sellIcon.enabled = b;
+        //sellIcon.enabled = b;
         priceTagImage.gameObject.SetActive(b);
     }
 }
